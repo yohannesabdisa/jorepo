@@ -11,9 +11,10 @@ char names[5][20];
 int marks[5][3];
 int total[5] = {0};
 double average[5] = {0};
+double Top_Student = 0;
+int Top_Student_Tracker = 0;
 int main()
 {
-
     Accept_Names();
     Accept_Marks();
     Totals_Averages();
@@ -60,11 +61,20 @@ void Totals_Averages()
 {
     for (int i = 0; i < 5; i++)
     {
+
         for (int j = 0; j < 3; j++)
         {
             total[i] += marks[i][j];
         }
         average[i] = total[i] / 3.0;
+        if (Top_Student > average[i])
+        {
+        }
+        else
+        {
+            Top_Student = average[i];
+            Top_Student_Tracker = i;
+        }
     }
 }
 void Table_Print()
@@ -86,9 +96,12 @@ void Table_Print()
         {
             cout << right << setw(6) << marks[i][j];
         }
-
-        cout << setw(8) << total[i]
+        cout << right << setw(8) << total[i]
              << setw(8) << average[i] << endl;
         Neat_Lines();
     }
+    cout << endl;
+    cout << "+----------------------------+" << endl;
+    cout << "| Top student: " << names[Top_Student_Tracker] << " |" << endl;
+    cout << "+----------------------------+" << endl;
 }
